@@ -68,7 +68,7 @@ export class Page extends React.Component {
         document.getElementById('cardface').style.display = "block";
         document.getElementById('answer').style.display = "none";
         //this.randomNumber = Math.floor((Math.random() * this.words.length));
-        if (this.wordIndex < this.words.length) {
+        if (this.wordIndex < this.words.length - 1) {
             this.wordIndex++;
         } else {
             this.wordIndex = 0;
