@@ -1,3 +1,4 @@
+module Flashcards exposing (..)
 import Array exposing (..)
 import Html exposing (..)
 import Html.App as Html
