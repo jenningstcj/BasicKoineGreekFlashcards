@@ -1,0 +1,15 @@
+var _user$project$Repl$word = A7(
+	_elm_lang$core$Json_Decode$object6,
+	F6(
+		function (v0, v1, v2, v3, v4, v5) {
+			return {ctor: '_Tuple6', _0: v0, _1: v1, _2: v2, _3: v3, _4: v4, _5: v5};
+		}),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ID', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'Word', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'Definition', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'DefiniteArticle', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'NumOfTimesInNT', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'OtherWordForms', _elm_lang$core$Json_Decode$string));
+var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
+var _user$project$Repl$seed0 = _elm_lang$core$Random$initialSeed(31415);
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$seed0;
