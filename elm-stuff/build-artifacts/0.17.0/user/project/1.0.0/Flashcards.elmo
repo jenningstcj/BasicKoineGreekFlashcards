@@ -1,0 +1,293 @@
+var _user$project$Flashcards$cycleCards = function (wList) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		A2(_elm_lang$core$List$drop, 1, wList),
+		A2(_elm_lang$core$List$take, 1, wList));
+};
+var _user$project$Flashcards$getCardValue = function (item) {
+	var _p0 = item;
+	if (_p0.ctor === 'Just') {
+		return _p0._0;
+	} else {
+		return {id: 0, word: 'error', definition: 'error', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''};
+	}
+};
+var _user$project$Flashcards$getNextWord = function (m) {
+	return (_elm_lang$core$Native_Utils.cmp(
+		_elm_lang$core$List$length(m.wordList),
+		0) > 0) ? _user$project$Flashcards$getCardValue(
+		_elm_lang$core$List$head(
+			A2(_elm_lang$core$List$take, 1, m.wordList))) : {id: 0, word: 'error', definition: 'error', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''};
+};
+var _user$project$Flashcards$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Flashcards$Word = F6(
+	function (a, b, c, d, e, f) {
+		return {id: a, word: b, definition: c, definiteArticle: d, numOfTimesInNT: e, otherWordForms: f};
+	});
+var _user$project$Flashcards$decodeWord = A7(
+	_elm_lang$core$Json_Decode$object6,
+	_user$project$Flashcards$Word,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'id', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'word', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'definition', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'definiteArticle', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'numOfTimesInNT', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'otherWordForms', _elm_lang$core$Json_Decode$string));
+var _user$project$Flashcards$decodeDataFile = A2(
+	_elm_lang$core$Json_Decode_ops[':='],
+	'data',
+	_elm_lang$core$Json_Decode$list(_user$project$Flashcards$decodeWord));
+var _user$project$Flashcards$Model = F5(
+	function (a, b, c, d, e) {
+		return {chapter: a, wordList: b, card: c, showDef: d, showWord: e};
+	});
+var _user$project$Flashcards$SetChapter = function (a) {
+	return {ctor: 'SetChapter', _0: a};
+};
+var _user$project$Flashcards$FetchFail = function (a) {
+	return {ctor: 'FetchFail', _0: a};
+};
+var _user$project$Flashcards$FetchSucceed = function (a) {
+	return {ctor: 'FetchSucceed', _0: a};
+};
+var _user$project$Flashcards$getWordList = function (ch) {
+	var url = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'data/',
+		A2(_elm_lang$core$Basics_ops['++'], ch, '.json'));
+	return A3(
+		_elm_lang$core$Task$perform,
+		_user$project$Flashcards$FetchFail,
+		_user$project$Flashcards$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _user$project$Flashcards$decodeDataFile, url));
+};
+var _user$project$Flashcards$init = function (ch) {
+	var model = {
+		chapter: ch,
+		wordList: _elm_lang$core$Native_List.fromArray(
+			[]),
+		card: {id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
+		showDef: 'none',
+		showWord: 'block'
+	};
+	return {
+		ctor: '_Tuple2',
+		_0: model,
+		_1: _user$project$Flashcards$getWordList(ch)
+	};
+};
+var _user$project$Flashcards$update = F2(
+	function (action, model) {
+		var _p1 = action;
+		switch (_p1.ctor) {
+			case 'Next':
+				return {
+					ctor: '_Tuple2',
+					_0: A5(
+						_user$project$Flashcards$Model,
+						model.chapter,
+						_user$project$Flashcards$cycleCards(model.wordList),
+						_user$project$Flashcards$getNextWord(model),
+						'none',
+						'block'),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Show':
+				return {
+					ctor: '_Tuple2',
+					_0: A5(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'block', 'none'),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'FetchSucceed':
+				return {
+					ctor: '_Tuple2',
+					_0: A5(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'none', 'block'),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'FetchFail':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			default:
+				var _p2 = _p1._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A5(
+						_user$project$Flashcards$Model,
+						_p2,
+						model.wordList,
+						{id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
+						'none',
+						'block'),
+					_1: _user$project$Flashcards$getWordList(_p2)
+				};
+		}
+	});
+var _user$project$Flashcards$Show = {ctor: 'Show'};
+var _user$project$Flashcards$Next = {ctor: 'Next'};
+var _user$project$Flashcards$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$MyStyles$mainStyle, _user$project$MyStyles$textCenter]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$select,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_user$project$MyStyles$textCenter,
+						_user$project$MyStyles$selectList,
+						_elm_lang$html$Html_Events$onInput(_user$project$Flashcards$SetChapter)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Ch4')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Ch6')
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[_user$project$MyStyles$flashcard]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$h5,
+						_elm_lang$core$Native_List.fromArray(
+							[_user$project$MyStyles$size2, _user$project$MyStyles$pullRight]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Frequency: '),
+								_elm_lang$html$Html$text(
+								_elm_lang$core$Basics$toString(model.card.numOfTimesInNT))
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[_user$project$MyStyles$clearFloats]),
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+						A2(
+						_elm_lang$html$Html$h1,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$size3,
+								_user$project$MyStyles$textCenter,
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'display', _1: model.showWord}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(model.card.word)
+							])),
+						A2(
+						_elm_lang$html$Html$h2,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$size3,
+								_user$project$MyStyles$textCenter,
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Definition: '),
+								_elm_lang$html$Html$text(model.card.definition)
+							])),
+						A2(
+						_elm_lang$html$Html$h2,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$size3,
+								_user$project$MyStyles$textCenter,
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Definite Article: '),
+								_elm_lang$html$Html$text(model.card.definiteArticle)
+							])),
+						A2(
+						_elm_lang$html$Html$h2,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$size3,
+								_user$project$MyStyles$textCenter,
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Other word forms: '),
+								_elm_lang$html$Html$text(model.card.otherWordForms)
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$btn,
+								_user$project$MyStyles$btnBlue,
+								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Show)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Show Definition')
+							])),
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$btn,
+								_user$project$MyStyles$btnBlue,
+								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Next)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Next Word')
+							]))
+					]))
+			]));
+};
+var _user$project$Flashcards$main = {
+	main: _elm_lang$html$Html_App$program(
+		{
+			init: _user$project$Flashcards$init('Ch4'),
+			view: _user$project$Flashcards$view,
+			update: _user$project$Flashcards$update,
+			subscriptions: _user$project$Flashcards$subscriptions
+		})
+};

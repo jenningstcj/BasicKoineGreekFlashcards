@@ -49,8 +49,8 @@ init ch =
     chapter = ch
     , wordList = []
     , card = { id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }
-    , showDef = "hidden"
-    , showWord = "visible"
+    , showDef = "none"
+    , showWord = "block"
   }
   in
     (model, getWordList ch)
@@ -72,19 +72,19 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update action model =
   case action of
     Next ->
-      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "hidden" "visible", Cmd.none)
+      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "none" "block", Cmd.none)
 
     Show ->
-      (Model model.chapter model.wordList model.card "visible" "hidden", Cmd.none)
+      (Model model.chapter model.wordList model.card "block" "none", Cmd.none)
 
     FetchSucceed newList ->
-      (Model model.chapter newList model.card "hidden" "visible", Cmd.none)
+      (Model model.chapter newList model.card "none" "block", Cmd.none)
 
     FetchFail _ ->
       (model, Cmd.none)
 
     SetChapter ch ->
-      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "hidden" "visible", getWordList ch)
+      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "none" "block", getWordList ch)
 
 
 
@@ -100,10 +100,10 @@ view model =
     div [flashcard] [
       h5 [size2, pullRight] [text "Frequency: ", text (toString model.card.numOfTimesInNT)]
       , div [clearFloats] []
-      , h1 [size6, textCenter, style [ ("visibility", model.showWord) ]] [text model.card.word]
-      , h2 [size6, textCenter, style [ ("visibility", model.showDef) ]] [text "Definition: ", text model.card.definition]
-      , h2 [size6, textCenter, style [ ("visibility", model.showDef) ]] [text "Definite Article: ", text model.card.definiteArticle]
-      , h2 [size6, textCenter, style [ ("visibility", model.showDef) ]] [text "Other word forms: ", text model.card.otherWordForms]
+      , h1 [size3, textCenter, style [ ("display", model.showWord) ]] [text model.card.word]
+      , h2 [size3, textCenter, style [ ("display", model.showDef) ]] [text "Definition: ", text model.card.definition]
+      , h2 [size3, textCenter, style [ ("display", model.showDef) ]] [text "Definite Article: ", text model.card.definiteArticle]
+      , h2 [size3, textCenter, style [ ("display", model.showDef) ]] [text "Other word forms: ", text model.card.otherWordForms]
     ]
     , div []
     [ button [ btn, btnBlue, onClick Show ] [ text "Show Definition" ]
