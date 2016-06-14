@@ -8406,6 +8406,17 @@ var _evancz$elm_http$Http$post = F3(
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
 
+var _user$project$MyStyles$size3 = _elm_lang$html$Html_Attributes$style(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'fontSize', _1: '3em'}
+		]));
+var _user$project$MyStyles$size2 = _elm_lang$html$Html_Attributes$style(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'fontSize', _1: '2em'},
+			{ctor: '_Tuple2', _0: 'margin', _1: '0px'}
+		]));
 var _user$project$MyStyles$dropDown = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -8424,10 +8435,8 @@ var _user$project$MyStyles$pullRight = _elm_lang$html$Html_Attributes$style(
 var _user$project$MyStyles$selectList = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
-			{ctor: '_Tuple2', _0: 'height', _1: '34px'},
 			{ctor: '_Tuple2', _0: 'padding', _1: '6px 12px;'},
-			{ctor: '_Tuple2', _0: 'fontSize', _1: '14px'},
-			{ctor: '_Tuple2', _0: 'lineHeight', _1: '1.42857143'},
+			{ctor: '_Tuple2', _0: 'fontSize', _1: '3em'},
 			{ctor: '_Tuple2', _0: 'color', _1: '#555'},
 			{ctor: '_Tuple2', _0: 'backgroundColor', _1: '#fff'},
 			{ctor: '_Tuple2', _0: 'backgroundImage', _1: 'none'},
@@ -8467,7 +8476,6 @@ var _user$project$MyStyles$btn = _elm_lang$html$Html_Attributes$style(
 		[
 			{ctor: '_Tuple2', _0: 'display', _1: 'inline-block'},
 			{ctor: '_Tuple2', _0: 'padding', _1: '6px 12px'},
-			{ctor: '_Tuple2', _0: 'fontSize', _1: '14px'},
 			{ctor: '_Tuple2', _0: 'fontWeight', _1: '400'},
 			{ctor: '_Tuple2', _0: 'lineHeight', _1: '1.42857143'},
 			{ctor: '_Tuple2', _0: 'textAlign', _1: 'center'},
@@ -8477,8 +8485,7 @@ var _user$project$MyStyles$btn = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'border', _1: 'none'},
 			{ctor: '_Tuple2', _0: 'color', _1: '#ffffff'},
 			{ctor: '_Tuple2', _0: 'margin', _1: '5px'},
-			{ctor: '_Tuple2', _0: 'width', _1: '200px'},
-			{ctor: '_Tuple2', _0: 'height', _1: '100px'}
+			{ctor: '_Tuple2', _0: 'fontSize', _1: '3em'}
 		]));
 var _user$project$MyStyles$center = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
@@ -8498,13 +8505,13 @@ var _user$project$MyStyles$flashcard = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'borderRadius', _1: '2px'}
 		]));
 
-var _user$project$Main$cycleCards = function (wList) {
+var _user$project$Flashcards$cycleCards = function (wList) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		A2(_elm_lang$core$List$drop, 1, wList),
 		A2(_elm_lang$core$List$take, 1, wList));
 };
-var _user$project$Main$getCardValue = function (item) {
+var _user$project$Flashcards$getCardValue = function (item) {
 	var _p0 = item;
 	if (_p0.ctor === 'Just') {
 		return _p0._0;
@@ -8512,73 +8519,73 @@ var _user$project$Main$getCardValue = function (item) {
 		return {id: 0, word: 'error', definition: 'error', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''};
 	}
 };
-var _user$project$Main$getNextWord = function (m) {
+var _user$project$Flashcards$getNextWord = function (m) {
 	return (_elm_lang$core$Native_Utils.cmp(
 		_elm_lang$core$List$length(m.wordList),
-		0) > 0) ? _user$project$Main$getCardValue(
+		0) > 0) ? _user$project$Flashcards$getCardValue(
 		_elm_lang$core$List$head(
 			A2(_elm_lang$core$List$take, 1, m.wordList))) : {id: 0, word: 'error', definition: 'error', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''};
 };
-var _user$project$Main$subscriptions = function (model) {
+var _user$project$Flashcards$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$Word = F6(
+var _user$project$Flashcards$Word = F6(
 	function (a, b, c, d, e, f) {
 		return {id: a, word: b, definition: c, definiteArticle: d, numOfTimesInNT: e, otherWordForms: f};
 	});
-var _user$project$Main$decodeWord = A7(
+var _user$project$Flashcards$decodeWord = A7(
 	_elm_lang$core$Json_Decode$object6,
-	_user$project$Main$Word,
+	_user$project$Flashcards$Word,
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'id', _elm_lang$core$Json_Decode$int),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'word', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'definition', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'definiteArticle', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'numOfTimesInNT', _elm_lang$core$Json_Decode$int),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'otherWordForms', _elm_lang$core$Json_Decode$string));
-var _user$project$Main$decodeDataFile = A2(
+var _user$project$Flashcards$decodeDataFile = A2(
 	_elm_lang$core$Json_Decode_ops[':='],
 	'data',
-	_elm_lang$core$Json_Decode$list(_user$project$Main$decodeWord));
-var _user$project$Main$Model = F5(
+	_elm_lang$core$Json_Decode$list(_user$project$Flashcards$decodeWord));
+var _user$project$Flashcards$Model = F5(
 	function (a, b, c, d, e) {
 		return {chapter: a, wordList: b, card: c, showDef: d, showWord: e};
 	});
-var _user$project$Main$SetChapter = function (a) {
+var _user$project$Flashcards$SetChapter = function (a) {
 	return {ctor: 'SetChapter', _0: a};
 };
-var _user$project$Main$FetchFail = function (a) {
+var _user$project$Flashcards$FetchFail = function (a) {
 	return {ctor: 'FetchFail', _0: a};
 };
-var _user$project$Main$FetchSucceed = function (a) {
+var _user$project$Flashcards$FetchSucceed = function (a) {
 	return {ctor: 'FetchSucceed', _0: a};
 };
-var _user$project$Main$getWordList = function (ch) {
+var _user$project$Flashcards$getWordList = function (ch) {
 	var url = A2(
 		_elm_lang$core$Basics_ops['++'],
 		'data/',
 		A2(_elm_lang$core$Basics_ops['++'], ch, '.json'));
 	return A3(
 		_elm_lang$core$Task$perform,
-		_user$project$Main$FetchFail,
-		_user$project$Main$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _user$project$Main$decodeDataFile, url));
+		_user$project$Flashcards$FetchFail,
+		_user$project$Flashcards$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _user$project$Flashcards$decodeDataFile, url));
 };
-var _user$project$Main$init = function (ch) {
+var _user$project$Flashcards$init = function (ch) {
 	var model = {
 		chapter: ch,
 		wordList: _elm_lang$core$Native_List.fromArray(
 			[]),
 		card: {id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-		showDef: 'hidden',
-		showWord: 'visible'
+		showDef: 'none',
+		showWord: 'block'
 	};
 	return {
 		ctor: '_Tuple2',
 		_0: model,
-		_1: _user$project$Main$getWordList(ch)
+		_1: _user$project$Flashcards$getWordList(ch)
 	};
 };
-var _user$project$Main$update = F2(
+var _user$project$Flashcards$update = F2(
 	function (action, model) {
 		var _p1 = action;
 		switch (_p1.ctor) {
@@ -8586,24 +8593,24 @@ var _user$project$Main$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: A5(
-						_user$project$Main$Model,
+						_user$project$Flashcards$Model,
 						model.chapter,
-						_user$project$Main$cycleCards(model.wordList),
-						_user$project$Main$getNextWord(model),
-						'hidden',
-						'visible'),
+						_user$project$Flashcards$cycleCards(model.wordList),
+						_user$project$Flashcards$getNextWord(model),
+						'none',
+						'block'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Show':
 				return {
 					ctor: '_Tuple2',
-					_0: A5(_user$project$Main$Model, model.chapter, model.wordList, model.card, 'visible', 'hidden'),
+					_0: A5(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'block', 'none'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchSucceed':
 				return {
 					ctor: '_Tuple2',
-					_0: A5(_user$project$Main$Model, model.chapter, _p1._0, model.card, 'hidden', 'visible'),
+					_0: A5(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'none', 'block'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':
@@ -8613,19 +8620,19 @@ var _user$project$Main$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: A5(
-						_user$project$Main$Model,
+						_user$project$Flashcards$Model,
 						_p2,
 						model.wordList,
 						{id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-						'hidden',
-						'visible'),
-					_1: _user$project$Main$getWordList(_p2)
+						'none',
+						'block'),
+					_1: _user$project$Flashcards$getWordList(_p2)
 				};
 		}
 	});
-var _user$project$Main$Show = {ctor: 'Show'};
-var _user$project$Main$Next = {ctor: 'Next'};
-var _user$project$Main$view = function (model) {
+var _user$project$Flashcards$Show = {ctor: 'Show'};
+var _user$project$Flashcards$Next = {ctor: 'Next'};
+var _user$project$Flashcards$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -8638,7 +8645,7 @@ var _user$project$Main$view = function (model) {
 					[
 						_user$project$MyStyles$textCenter,
 						_user$project$MyStyles$selectList,
-						_elm_lang$html$Html_Events$onInput(_user$project$Main$SetChapter)
+						_elm_lang$html$Html_Events$onInput(_user$project$Flashcards$SetChapter)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -8668,7 +8675,7 @@ var _user$project$Main$view = function (model) {
 						A2(
 						_elm_lang$html$Html$h5,
 						_elm_lang$core$Native_List.fromArray(
-							[_user$project$MyStyles$pullRight]),
+							[_user$project$MyStyles$size2, _user$project$MyStyles$pullRight]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Frequency: '),
@@ -8685,11 +8692,12 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$h1,
 						_elm_lang$core$Native_List.fromArray(
 							[
+								_user$project$MyStyles$size3,
 								_user$project$MyStyles$textCenter,
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showWord}
+										{ctor: '_Tuple2', _0: 'display', _1: model.showWord}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -8700,11 +8708,12 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$h2,
 						_elm_lang$core$Native_List.fromArray(
 							[
+								_user$project$MyStyles$size3,
 								_user$project$MyStyles$textCenter,
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -8716,11 +8725,12 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$h2,
 						_elm_lang$core$Native_List.fromArray(
 							[
+								_user$project$MyStyles$size3,
 								_user$project$MyStyles$textCenter,
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -8732,11 +8742,12 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$h2,
 						_elm_lang$core$Native_List.fromArray(
 							[
+								_user$project$MyStyles$size3,
 								_user$project$MyStyles$textCenter,
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -8757,7 +8768,7 @@ var _user$project$Main$view = function (model) {
 							[
 								_user$project$MyStyles$btn,
 								_user$project$MyStyles$btnBlue,
-								_elm_lang$html$Html_Events$onClick(_user$project$Main$Show)
+								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Show)
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -8769,7 +8780,7 @@ var _user$project$Main$view = function (model) {
 							[
 								_user$project$MyStyles$btn,
 								_user$project$MyStyles$btnBlue,
-								_elm_lang$html$Html_Events$onClick(_user$project$Main$Next)
+								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Next)
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -8778,19 +8789,19 @@ var _user$project$Main$view = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$main = {
+var _user$project$Flashcards$main = {
 	main: _elm_lang$html$Html_App$program(
 		{
-			init: _user$project$Main$init('Ch4'),
-			view: _user$project$Main$view,
-			update: _user$project$Main$update,
-			subscriptions: _user$project$Main$subscriptions
+			init: _user$project$Flashcards$init('Ch4'),
+			view: _user$project$Flashcards$view,
+			update: _user$project$Flashcards$update,
+			subscriptions: _user$project$Flashcards$subscriptions
 		})
 };
 
 var Elm = {};
-Elm['Main'] = Elm['Main'] || {};
-_elm_lang$core$Native_Platform.addPublicModule(Elm['Main'], 'Main', typeof _user$project$Main$main === 'undefined' ? null : _user$project$Main$main);
+Elm['Flashcards'] = Elm['Flashcards'] || {};
+_elm_lang$core$Native_Platform.addPublicModule(Elm['Flashcards'], 'Flashcards', typeof _user$project$Flashcards$main === 'undefined' ? null : _user$project$Flashcards$main);
 
 if (typeof define === "function" && define['amd'])
 {
