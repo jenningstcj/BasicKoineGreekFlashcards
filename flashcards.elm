@@ -98,12 +98,12 @@ view model =
       option [] [text "Ch6"]
     ],
     div [flashcard] [
-      h5 [pullRight] [text "Frequency: ", text (toString model.card.numOfTimesInNT)]
+      h5 [size2, pullRight] [text "Frequency: ", text (toString model.card.numOfTimesInNT)]
       , div [clearFloats] []
-      , h1 [textCenter, style [ ("visibility", model.showWord) ]] [text model.card.word]
-      , h2 [textCenter, style [ ("visibility", model.showDef) ]] [text "Definition: ", text model.card.definition]
-      , h2 [textCenter, style [ ("visibility", model.showDef) ]] [text "Definite Article: ", text model.card.definiteArticle]
-      , h2 [textCenter, style [ ("visibility", model.showDef) ]] [text "Other word forms: ", text model.card.otherWordForms]
+      , h1 [size6, textCenter, style [ ("visibility", model.showWord) ]] [text model.card.word]
+      , h2 [size6, textCenter, style [ ("visibility", model.showDef) ]] [text "Definition: ", text model.card.definition]
+      , h2 [size6, textCenter, style [ ("visibility", model.showDef) ]] [text "Definite Article: ", text model.card.definiteArticle]
+      , h2 [size6, textCenter, style [ ("visibility", model.showDef) ]] [text "Other word forms: ", text model.card.otherWordForms]
     ]
     , div []
     [ button [ btn, btnBlue, onClick Show ] [ text "Show Definition" ]

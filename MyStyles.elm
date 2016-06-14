@@ -40,8 +40,7 @@ btn =
     , ("border", "none")
     , ("color", "#ffffff")
     , ("margin", "5px")
-    , ("width", "200px")
-    , ("height", "100px")
+    , ("fontSize", "4em")
     ]
 
 btnBlue: Attribute msg
@@ -76,8 +75,7 @@ selectList =
   style
     [("height","34px")
     , ("padding","6px 12px;")
-    , ("fontSize", "14px")
-    , ("lineHeight","1.42857143")
+    , ("fontSize", "4em")
     , ("color", "#555")
     , ("backgroundColor", "#fff")
     , ("backgroundImage", "none")
@@ -101,3 +99,13 @@ dropDown:Attribute msg
 dropDown =
   style
     [("marginTop", "7em")]
+
+size2:Attribute msg
+size2 =
+  style
+    [("fontSize","2em")]
+
+size6:Attribute msg
+size6 =
+  style
+    [("fontSize","6em")]
