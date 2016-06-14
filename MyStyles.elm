@@ -30,7 +30,6 @@ btn =
   style
     [("display","inline-block")
     , ("padding", "6px 12px")
-    , ("fontSize", "14px")
     , ("fontWeight", "400")
     , ("lineHeight", "1.42857143")
     , ("textAlign", "center")
@@ -73,8 +72,7 @@ italics =
 selectList: Attribute msg
 selectList =
   style
-    [("height","34px")
-    , ("padding","6px 12px;")
+    [("padding","6px 12px;")
     , ("fontSize", "4em")
     , ("color", "#555")
     , ("backgroundColor", "#fff")
