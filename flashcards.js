@@ -8629,12 +8629,7 @@ var _user$project$Flashcards$update = F2(
 			case 'FetchSucceed':
 				return {
 					ctor: '_Tuple2',
-					_0: A4(
-						_user$project$Flashcards$Model,
-						model.chapter,
-						_user$project$Flashcards$shuffle(_p1._0),
-						model.card,
-						'hidden'),
+					_0: A4(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'hidden'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':

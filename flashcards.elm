@@ -79,7 +79,7 @@ update action model =
       (Model model.chapter model.wordList model.card "visible", Cmd.none)
 
     FetchSucceed newList ->
-      (Model model.chapter (shuffle newList) model.card "hidden", Cmd.none)
+      (Model model.chapter newList model.card "hidden", Cmd.none)
 
     FetchFail _ ->
       (model, Cmd.none)
