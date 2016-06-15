@@ -11,7 +11,7 @@ import Random
 import Debug
 import MyStyles exposing (..)
 import String
-import Result
+import Time
 
 main =
   Html.program
@@ -39,6 +39,7 @@ type alias Model =
   , wordList : List Word
   , card : Word
   , showDef : String
+  , time : Int
   }
 
 
@@ -51,6 +52,7 @@ init ch =
     , wordList = []
     , card = { id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }
     , showDef = "hidden"
+    , time = 0
   }
   in
     (model, getWordList ch)
@@ -67,28 +69,32 @@ type Msg
   | FetchFail Http.Error
   | SetChapter String
   | Shuffle
+  | Tick Time.Time
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update action model =
   case action of
     Next ->
-      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "hidden", Cmd.none)
+      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "hidden" model.time, Cmd.none)
 
     Show ->
-      (Model model.chapter model.wordList model.card "visible", Cmd.none)
+      (Model model.chapter model.wordList model.card "visible" model.time, Cmd.none)
 
     FetchSucceed newList ->
-      (Model model.chapter newList model.card "hidden", Cmd.none)
+      (Model model.chapter (shuffle (Model model.chapter newList model.card "hidden" model.time)) model.card "hidden" model.time, Cmd.none)
 
     FetchFail _ ->
       (model, Cmd.none)
 
     SetChapter ch ->
-      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "hidden", getWordList ch)
+      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "hidden" model.time, getWordList ch)
 
     Shuffle ->
-      (Model model.chapter (shuffle model.wordList) model.card model.showDef, Cmd.none)
+      (Model model.chapter (shuffle model) model.card model.showDef model.time, Cmd.none)
+
+    Tick newTime ->
+      (Model model.chapter model.wordList model.card model.showDef (round newTime), Cmd.none)
 
 -- VIEW
 
@@ -120,7 +126,7 @@ view model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none
+  Time.every Time.millisecond Tick
 
 
 
@@ -171,11 +177,12 @@ cycleCards wList =
   (List.drop 1 wList) ++ (List.take 1 wList)
 
 
-shuffle : List Word -> List Word
-shuffle wList =
-   List.map randomID wList
-   |>List.sortBy .id
-
-randomID : Word -> Word
-randomID word =
-    { word | id = Random.step (Random.int 0 100) (Random.initialSeed ((String.length word.definition) * (String.length word.word) // word.id)) |> fst }
+shuffle : Model -> List Word
+shuffle model =
+  let
+    randomlist = Random.step (Random.list (List.length model.wordList) (Random.int 1 100)) (Random.initialSeed model.time) |> fst
+    zippedList  = List.map2 (,) randomlist model.wordList
+    sorted = zippedList |> List.sortBy fst
+    unzipped = List.unzip sorted |> snd
+  in
+   unzipped

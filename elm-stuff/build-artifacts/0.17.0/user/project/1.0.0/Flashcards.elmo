@@ -1,22 +1,24 @@
-var _user$project$Flashcards$randomID = function (word) {
-	return _elm_lang$core$Native_Utils.update(
-		word,
-		{
-			id: _elm_lang$core$Basics$fst(
-				A2(
-					_elm_lang$core$Random$step,
-					A2(_elm_lang$core$Random$int, 0, 100),
-					_elm_lang$core$Random$initialSeed(
-						((_elm_lang$core$String$length(word.definition) * _elm_lang$core$String$length(word.word)) / word.id) | 0)))
-		});
-};
-var _user$project$Flashcards$shuffle = function (wList) {
-	return A2(
-		_elm_lang$core$List$sortBy,
-		function (_) {
-			return _.id;
-		},
-		A2(_elm_lang$core$List$map, _user$project$Flashcards$randomID, wList));
+var _user$project$Flashcards$shuffle = function (model) {
+	var randomlist = _elm_lang$core$Basics$fst(
+		A2(
+			_elm_lang$core$Random$step,
+			A2(
+				_elm_lang$core$Random$list,
+				_elm_lang$core$List$length(model.wordList),
+				A2(_elm_lang$core$Random$int, 1, 100)),
+			_elm_lang$core$Random$initialSeed(model.time)));
+	var zippedList = A3(
+		_elm_lang$core$List$map2,
+		F2(
+			function (v0, v1) {
+				return {ctor: '_Tuple2', _0: v0, _1: v1};
+			}),
+		randomlist,
+		model.wordList);
+	var sorted = A2(_elm_lang$core$List$sortBy, _elm_lang$core$Basics$fst, zippedList);
+	var unzipped = _elm_lang$core$Basics$snd(
+		_elm_lang$core$List$unzip(sorted));
+	return unzipped;
 };
 var _user$project$Flashcards$cycleCards = function (wList) {
 	return A2(
@@ -39,9 +41,6 @@ var _user$project$Flashcards$getNextWord = function (m) {
 		_elm_lang$core$List$head(
 			A2(_elm_lang$core$List$take, 1, m.wordList))) : {id: 0, word: 'error', definition: 'error', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''};
 };
-var _user$project$Flashcards$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
 var _user$project$Flashcards$Word = F6(
 	function (a, b, c, d, e, f) {
 		return {id: a, word: b, definition: c, definiteArticle: d, numOfTimesInNT: e, otherWordForms: f};
@@ -59,10 +58,16 @@ var _user$project$Flashcards$decodeDataFile = A2(
 	_elm_lang$core$Json_Decode_ops[':='],
 	'data',
 	_elm_lang$core$Json_Decode$list(_user$project$Flashcards$decodeWord));
-var _user$project$Flashcards$Model = F4(
-	function (a, b, c, d) {
-		return {chapter: a, wordList: b, card: c, showDef: d};
+var _user$project$Flashcards$Model = F5(
+	function (a, b, c, d, e) {
+		return {chapter: a, wordList: b, card: c, showDef: d, time: e};
 	});
+var _user$project$Flashcards$Tick = function (a) {
+	return {ctor: 'Tick', _0: a};
+};
+var _user$project$Flashcards$subscriptions = function (model) {
+	return A2(_elm_lang$core$Time$every, _elm_lang$core$Time$millisecond, _user$project$Flashcards$Tick);
+};
 var _user$project$Flashcards$Shuffle = {ctor: 'Shuffle'};
 var _user$project$Flashcards$SetChapter = function (a) {
 	return {ctor: 'SetChapter', _0: a};
@@ -90,7 +95,8 @@ var _user$project$Flashcards$init = function (ch) {
 		wordList: _elm_lang$core$Native_List.fromArray(
 			[]),
 		card: {id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-		showDef: 'hidden'
+		showDef: 'hidden',
+		time: 0
 	};
 	return {
 		ctor: '_Tuple2',
@@ -105,24 +111,32 @@ var _user$project$Flashcards$update = F2(
 			case 'Next':
 				return {
 					ctor: '_Tuple2',
-					_0: A4(
+					_0: A5(
 						_user$project$Flashcards$Model,
 						model.chapter,
 						_user$project$Flashcards$cycleCards(model.wordList),
 						_user$project$Flashcards$getNextWord(model),
-						'hidden'),
+						'hidden',
+						model.time),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Show':
 				return {
 					ctor: '_Tuple2',
-					_0: A4(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'visible'),
+					_0: A5(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'visible', model.time),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchSucceed':
 				return {
 					ctor: '_Tuple2',
-					_0: A4(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'hidden'),
+					_0: A5(
+						_user$project$Flashcards$Model,
+						model.chapter,
+						_user$project$Flashcards$shuffle(
+							A5(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'hidden', model.time)),
+						model.card,
+						'hidden',
+						model.time),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':
@@ -131,23 +145,37 @@ var _user$project$Flashcards$update = F2(
 				var _p2 = _p1._0;
 				return {
 					ctor: '_Tuple2',
-					_0: A4(
+					_0: A5(
 						_user$project$Flashcards$Model,
 						_p2,
 						model.wordList,
 						{id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-						'hidden'),
+						'hidden',
+						model.time),
 					_1: _user$project$Flashcards$getWordList(_p2)
+				};
+			case 'Shuffle':
+				return {
+					ctor: '_Tuple2',
+					_0: A5(
+						_user$project$Flashcards$Model,
+						model.chapter,
+						_user$project$Flashcards$shuffle(model),
+						model.card,
+						model.showDef,
+						model.time),
+					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
 				return {
 					ctor: '_Tuple2',
-					_0: A4(
+					_0: A5(
 						_user$project$Flashcards$Model,
 						model.chapter,
-						_user$project$Flashcards$shuffle(model.wordList),
+						model.wordList,
 						model.card,
-						model.showDef),
+						model.showDef,
+						_elm_lang$core$Basics$round(_p1._0)),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
