@@ -8505,6 +8505,26 @@ var _user$project$MyStyles$flashcard = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'borderRadius', _1: '2px'}
 		]));
 
+var _user$project$Flashcards$randomID = function (word) {
+	return _elm_lang$core$Native_Utils.update(
+		word,
+		{
+			id: _elm_lang$core$Basics$fst(
+				A2(
+					_elm_lang$core$Random$step,
+					A2(_elm_lang$core$Random$int, 0, 100),
+					_elm_lang$core$Random$initialSeed(
+						((_elm_lang$core$String$length(word.definition) * _elm_lang$core$String$length(word.word)) / word.id) | 0)))
+		});
+};
+var _user$project$Flashcards$shuffle = function (wList) {
+	return A2(
+		_elm_lang$core$List$sortBy,
+		function (_) {
+			return _.id;
+		},
+		A2(_elm_lang$core$List$map, _user$project$Flashcards$randomID, wList));
+};
 var _user$project$Flashcards$cycleCards = function (wList) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
@@ -8550,6 +8570,7 @@ var _user$project$Flashcards$Model = F4(
 	function (a, b, c, d) {
 		return {chapter: a, wordList: b, card: c, showDef: d};
 	});
+var _user$project$Flashcards$Shuffle = {ctor: 'Shuffle'};
 var _user$project$Flashcards$SetChapter = function (a) {
 	return {ctor: 'SetChapter', _0: a};
 };
@@ -8608,12 +8629,17 @@ var _user$project$Flashcards$update = F2(
 			case 'FetchSucceed':
 				return {
 					ctor: '_Tuple2',
-					_0: A4(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'hidden'),
+					_0: A4(
+						_user$project$Flashcards$Model,
+						model.chapter,
+						_user$project$Flashcards$shuffle(_p1._0),
+						model.card,
+						'hidden'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			default:
+			case 'SetChapter':
 				var _p2 = _p1._0;
 				return {
 					ctor: '_Tuple2',
@@ -8624,6 +8650,17 @@ var _user$project$Flashcards$update = F2(
 						{id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
 						'hidden'),
 					_1: _user$project$Flashcards$getWordList(_p2)
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: A4(
+						_user$project$Flashcards$Model,
+						model.chapter,
+						_user$project$Flashcards$shuffle(model.wordList),
+						model.card,
+						model.showDef),
+					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
 	});
@@ -8770,6 +8807,18 @@ var _user$project$Flashcards$view = function (model) {
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Next Word')
+							])),
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$btn,
+								_user$project$MyStyles$btnBlue,
+								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Shuffle)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Shuffle')
 							]))
 					]))
 			]));

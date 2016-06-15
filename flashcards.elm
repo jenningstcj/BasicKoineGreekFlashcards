@@ -10,6 +10,8 @@ import Task
 import Random
 import Debug
 import MyStyles exposing (..)
+import String
+import Result
 
 main =
   Html.program
@@ -64,6 +66,7 @@ type Msg
   | FetchSucceed (List Word)
   | FetchFail Http.Error
   | SetChapter String
+  | Shuffle
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -76,7 +79,7 @@ update action model =
       (Model model.chapter model.wordList model.card "visible", Cmd.none)
 
     FetchSucceed newList ->
-      (Model model.chapter newList model.card "hidden", Cmd.none)
+      (Model model.chapter (shuffle newList) model.card "hidden", Cmd.none)
 
     FetchFail _ ->
       (model, Cmd.none)
@@ -84,8 +87,8 @@ update action model =
     SetChapter ch ->
       (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "hidden", getWordList ch)
 
-
-
+    Shuffle ->
+      (Model model.chapter (shuffle model.wordList) model.card model.showDef, Cmd.none)
 
 -- VIEW
 
@@ -107,6 +110,7 @@ view model =
     , div []
     [ button [ btn, btnBlue, onClick Show ] [ text "Show Definition" ]
     , button [ btn, btnBlue, onClick Next ] [ text "Next Word" ]
+    , button [ btn, btnBlue, onClick Shuffle ] [ text "Shuffle" ]
     ]
     ]
 
@@ -166,11 +170,12 @@ cycleCards : List Word -> List Word
 cycleCards wList =
   (List.drop 1 wList) ++ (List.take 1 wList)
 
-  {--
-shuffle : List Word -> Int -> List Word
-shuffle lt len =
-  case len of
-    0 ->
-      lt
-    _ ->
-    move items then re call with len -1 --}
+
+shuffle : List Word -> List Word
+shuffle wList =
+   List.map randomID wList
+   |>List.sortBy .id
+
+randomID : Word -> Word
+randomID word =
+    { word | id = Random.step (Random.int 0 100) (Random.initialSeed ((String.length word.definition) * (String.length word.word) // word.id)) |> fst }
