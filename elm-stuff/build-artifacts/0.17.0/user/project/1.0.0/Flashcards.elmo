@@ -39,9 +39,9 @@ var _user$project$Flashcards$decodeDataFile = A2(
 	_elm_lang$core$Json_Decode_ops[':='],
 	'data',
 	_elm_lang$core$Json_Decode$list(_user$project$Flashcards$decodeWord));
-var _user$project$Flashcards$Model = F5(
-	function (a, b, c, d, e) {
-		return {chapter: a, wordList: b, card: c, showDef: d, showWord: e};
+var _user$project$Flashcards$Model = F4(
+	function (a, b, c, d) {
+		return {chapter: a, wordList: b, card: c, showDef: d};
 	});
 var _user$project$Flashcards$SetChapter = function (a) {
 	return {ctor: 'SetChapter', _0: a};
@@ -69,8 +69,7 @@ var _user$project$Flashcards$init = function (ch) {
 		wordList: _elm_lang$core$Native_List.fromArray(
 			[]),
 		card: {id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-		showDef: 'none',
-		showWord: 'block'
+		showDef: 'hidden'
 	};
 	return {
 		ctor: '_Tuple2',
@@ -85,25 +84,24 @@ var _user$project$Flashcards$update = F2(
 			case 'Next':
 				return {
 					ctor: '_Tuple2',
-					_0: A5(
+					_0: A4(
 						_user$project$Flashcards$Model,
 						model.chapter,
 						_user$project$Flashcards$cycleCards(model.wordList),
 						_user$project$Flashcards$getNextWord(model),
-						'none',
-						'block'),
+						'hidden'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Show':
 				return {
 					ctor: '_Tuple2',
-					_0: A5(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'block', 'none'),
+					_0: A4(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'visible'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchSucceed':
 				return {
 					ctor: '_Tuple2',
-					_0: A5(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'none', 'block'),
+					_0: A4(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'hidden'),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':
@@ -112,13 +110,12 @@ var _user$project$Flashcards$update = F2(
 				var _p2 = _p1._0;
 				return {
 					ctor: '_Tuple2',
-					_0: A5(
+					_0: A4(
 						_user$project$Flashcards$Model,
 						_p2,
 						model.wordList,
 						{id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-						'none',
-						'block'),
+						'hidden'),
 					_1: _user$project$Flashcards$getWordList(_p2)
 				};
 		}
@@ -171,7 +168,6 @@ var _user$project$Flashcards$view = function (model) {
 							[_user$project$MyStyles$size2, _user$project$MyStyles$pullRight]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Frequency: '),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(model.card.numOfTimesInNT))
 							])),
@@ -184,15 +180,7 @@ var _user$project$Flashcards$view = function (model) {
 						A2(
 						_elm_lang$html$Html$h1,
 						_elm_lang$core$Native_List.fromArray(
-							[
-								_user$project$MyStyles$size3,
-								_user$project$MyStyles$textCenter,
-								_elm_lang$html$Html_Attributes$style(
-								_elm_lang$core$Native_List.fromArray(
-									[
-										{ctor: '_Tuple2', _0: 'display', _1: model.showWord}
-									]))
-							]),
+							[_user$project$MyStyles$size3, _user$project$MyStyles$textCenter]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text(model.card.word)
@@ -206,12 +194,11 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
+										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Definition: '),
 								_elm_lang$html$Html$text(model.card.definition)
 							])),
 						A2(
@@ -223,12 +210,11 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
+										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Definite Article: '),
 								_elm_lang$html$Html$text(model.card.definiteArticle)
 							])),
 						A2(
@@ -240,12 +226,11 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'display', _1: model.showDef}
+										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Other word forms: '),
 								_elm_lang$html$Html$text(model.card.otherWordForms)
 							]))
 					])),

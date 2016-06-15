@@ -37,7 +37,6 @@ type alias Model =
   , wordList : List Word
   , card : Word
   , showDef : String
-  , showWord: String
   }
 
 
@@ -49,8 +48,7 @@ init ch =
     chapter = ch
     , wordList = []
     , card = { id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }
-    , showDef = "none"
-    , showWord = "block"
+    , showDef = "hidden"
   }
   in
     (model, getWordList ch)
@@ -72,19 +70,20 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update action model =
   case action of
     Next ->
-      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "none" "block", Cmd.none)
+      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "hidden", Cmd.none)
 
     Show ->
-      (Model model.chapter model.wordList model.card "block" "none", Cmd.none)
+      (Model model.chapter model.wordList model.card "visible", Cmd.none)
 
     FetchSucceed newList ->
-      (Model model.chapter newList model.card "none" "block", Cmd.none)
+      (Model model.chapter newList model.card "hidden", Cmd.none)
 
     FetchFail _ ->
       (model, Cmd.none)
 
     SetChapter ch ->
-      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "none" "block", getWordList ch)
+      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "hidden", getWordList ch)
+
 
 
 
@@ -98,12 +97,12 @@ view model =
       option [] [text "Ch6"]
     ],
     div [flashcard] [
-      h5 [size2, pullRight] [text "Frequency: ", text (toString model.card.numOfTimesInNT)]
+      h5 [size2, pullRight] [text (toString model.card.numOfTimesInNT)]
       , div [clearFloats] []
-      , h1 [size3, textCenter, style [ ("display", model.showWord) ]] [text model.card.word]
-      , h2 [size3, textCenter, style [ ("display", model.showDef) ]] [text "Definition: ", text model.card.definition]
-      , h2 [size3, textCenter, style [ ("display", model.showDef) ]] [text "Definite Article: ", text model.card.definiteArticle]
-      , h2 [size3, textCenter, style [ ("display", model.showDef) ]] [text "Other word forms: ", text model.card.otherWordForms]
+      , h1 [size3, textCenter] [text model.card.word]
+      , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
+      , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definiteArticle]
+      , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.otherWordForms]
     ]
     , div []
     [ button [ btn, btnBlue, onClick Show ] [ text "Show Definition" ]
@@ -166,3 +165,12 @@ getCardValue item =
 cycleCards : List Word -> List Word
 cycleCards wList =
   (List.drop 1 wList) ++ (List.take 1 wList)
+
+  {--
+shuffle : List Word -> Int -> List Word
+shuffle lt len =
+  case len of
+    0 ->
+      lt
+    _ ->
+    move items then re call with len -1 --}
