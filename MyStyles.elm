@@ -73,7 +73,7 @@ selectList: Attribute msg
 selectList =
   style
     [("padding","6px 12px;")
-    , ("fontSize", "3em")
+    , ("fontSize", "2em")
     , ("color", "#555")
     , ("backgroundColor", "#fff")
     , ("backgroundImage", "none")

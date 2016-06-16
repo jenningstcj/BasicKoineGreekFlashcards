@@ -8436,7 +8436,7 @@ var _user$project$MyStyles$selectList = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
 			{ctor: '_Tuple2', _0: 'padding', _1: '6px 12px;'},
-			{ctor: '_Tuple2', _0: 'fontSize', _1: '3em'},
+			{ctor: '_Tuple2', _0: 'fontSize', _1: '2em'},
 			{ctor: '_Tuple2', _0: 'color', _1: '#555'},
 			{ctor: '_Tuple2', _0: 'backgroundColor', _1: '#fff'},
 			{ctor: '_Tuple2', _0: 'backgroundImage', _1: 'none'},
@@ -8707,20 +8707,63 @@ var _user$project$Flashcards$view = function (model) {
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$option,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
+						_elm_lang$html$Html$optgroup,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Ch4')
+								A2(_elm_lang$html$Html_Attributes$attribute, 'label', 'Grammar')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Nouns')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Nouns')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Verbs')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Verbs')
+									]))
 							])),
 						A2(
-						_elm_lang$html$Html$option,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
+						_elm_lang$html$Html$optgroup,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Ch6')
+								A2(_elm_lang$html$Html_Attributes$attribute, 'label', 'Mounce Chapter Vocab')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$selected(true),
+										_elm_lang$html$Html_Attributes$value('Ch4')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 4')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch6')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 6')
+									]))
 							]))
 					])),
 				A2(

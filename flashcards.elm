@@ -102,8 +102,18 @@ view : Model -> Html Msg
 view model =
   div [mainStyle, textCenter]
     [ select [ textCenter, selectList, onInput SetChapter] [
-      option [] [text "Ch4"],
-      option [] [text "Ch6"]
+      optgroup [attribute "label" "Grammar"] [
+        option [Html.Attributes.value "Nouns"] [text "Nouns"]
+        , option [Html.Attributes.value "Verbs"] [text "Verbs"]
+      ]
+      , optgroup [attribute "label" "Mounce Chapter Vocab"] [
+        option [selected True, Html.Attributes.value "Ch4"] [text "Ch 4"]
+        , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
+      ]
+      {--, optgroup [attribute "label" "Cognate Vocab Lists"] [
+        option [Html.Attributes.value "Ch4"] [text "agathos"]
+        , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
+      ]--}
     ],
     div [flashcard] [
       h5 [size2, pullRight] [text (toString model.card.numOfTimesInNT)]
