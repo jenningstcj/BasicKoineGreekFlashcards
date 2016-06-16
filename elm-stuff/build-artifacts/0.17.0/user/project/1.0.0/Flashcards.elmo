@@ -256,6 +256,16 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Ch 6')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch7')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 7')
 									]))
 							]))
 					])),
@@ -268,7 +278,15 @@ var _user$project$Flashcards$view = function (model) {
 						A2(
 						_elm_lang$html$Html$h5,
 						_elm_lang$core$Native_List.fromArray(
-							[_user$project$MyStyles$size2, _user$project$MyStyles$pullRight]),
+							[
+								_user$project$MyStyles$size2,
+								_user$project$MyStyles$pullRight,
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'display', _1: 'none'}
+									]))
+							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text(

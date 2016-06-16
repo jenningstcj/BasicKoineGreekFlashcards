@@ -109,6 +109,7 @@ view model =
       , optgroup [attribute "label" "Mounce Chapter Vocab"] [
         option [selected True, Html.Attributes.value "Ch4"] [text "Ch 4"]
         , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
+        , option [Html.Attributes.value "Ch7"] [text "Ch 7"]
       ]
       {--, optgroup [attribute "label" "Cognate Vocab Lists"] [
         option [Html.Attributes.value "Ch4"] [text "agathos"]
@@ -116,7 +117,7 @@ view model =
       ]--}
     ],
     div [flashcard] [
-      h5 [size2, pullRight] [text (toString model.card.numOfTimesInNT)]
+      h5 [size2, pullRight, style [ ("display", "none") ]] [text (toString model.card.numOfTimesInNT)]
       , div [clearFloats] []
       , h1 [size3, textCenter] [text model.card.word]
       , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
