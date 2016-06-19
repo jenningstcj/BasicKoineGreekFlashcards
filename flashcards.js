@@ -8602,7 +8602,7 @@ var _user$project$Flashcards$init = function (ch) {
 		wordList: _elm_lang$core$Native_List.fromArray(
 			[]),
 		card: {id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-		showDef: 'hidden',
+		showDef: 'visible',
 		time: 0
 	};
 	return {
@@ -8616,23 +8616,26 @@ var _user$project$Flashcards$update = F2(
 		var _p1 = action;
 		switch (_p1.ctor) {
 			case 'Next':
-				return {
-					ctor: '_Tuple2',
-					_0: A5(
-						_user$project$Flashcards$Model,
-						model.chapter,
-						_user$project$Flashcards$cycleCards(model.wordList),
-						_user$project$Flashcards$getNextWord(model),
-						'hidden',
-						model.time),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'Show':
-				return {
-					ctor: '_Tuple2',
-					_0: A5(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'visible', model.time),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				var _p2 = _p1._0;
+				if (_p2 === 'hidden') {
+					return {
+						ctor: '_Tuple2',
+						_0: A5(_user$project$Flashcards$Model, model.chapter, model.wordList, model.card, 'visible', model.time),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: A5(
+							_user$project$Flashcards$Model,
+							model.chapter,
+							_user$project$Flashcards$cycleCards(model.wordList),
+							_user$project$Flashcards$getNextWord(model),
+							'hidden',
+							model.time),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
 			case 'FetchSucceed':
 				return {
 					ctor: '_Tuple2',
@@ -8642,24 +8645,24 @@ var _user$project$Flashcards$update = F2(
 						_user$project$Flashcards$shuffle(
 							A5(_user$project$Flashcards$Model, model.chapter, _p1._0, model.card, 'hidden', model.time)),
 						model.card,
-						'hidden',
+						'visible',
 						model.time),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'SetChapter':
-				var _p2 = _p1._0;
+				var _p3 = _p1._0;
 				return {
 					ctor: '_Tuple2',
 					_0: A5(
 						_user$project$Flashcards$Model,
-						_p2,
+						_p3,
 						model.wordList,
 						{id: 0, word: '', definition: '', definiteArticle: '', numOfTimesInNT: 0, otherWordForms: ''},
-						'hidden',
+						'visible',
 						model.time),
-					_1: _user$project$Flashcards$getWordList(_p2)
+					_1: _user$project$Flashcards$getWordList(_p3)
 				};
 			case 'Shuffle':
 				return {
@@ -8687,8 +8690,9 @@ var _user$project$Flashcards$update = F2(
 				};
 		}
 	});
-var _user$project$Flashcards$Show = {ctor: 'Show'};
-var _user$project$Flashcards$Next = {ctor: 'Next'};
+var _user$project$Flashcards$Next = function (a) {
+	return {ctor: 'Next', _0: a};
+};
 var _user$project$Flashcards$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -8773,6 +8777,76 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Ch 7')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch8')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 8')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch9')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 9')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch10')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 10')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch11')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 11')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch12')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 12')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch13')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 13')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('Ch14')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Ch 14')
 									]))
 							]))
 					])),
@@ -8791,7 +8865,7 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html_Attributes$style(
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'display', _1: 'none'}
+										{ctor: '_Tuple2', _0: 'visibility', _1: 'hidden'}
 									]))
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -8874,35 +8948,24 @@ var _user$project$Flashcards$view = function (model) {
 							[
 								_user$project$MyStyles$btn,
 								_user$project$MyStyles$btnBlue,
-								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Show)
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text('Show Definition')
-							])),
-						A2(
-						_elm_lang$html$Html$button,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_user$project$MyStyles$btn,
-								_user$project$MyStyles$btnBlue,
-								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Next)
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text('Next Word')
-							])),
-						A2(
-						_elm_lang$html$Html$button,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_user$project$MyStyles$btn,
-								_user$project$MyStyles$btnBlue,
 								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Shuffle)
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html$text('Shuffle')
+							])),
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$MyStyles$btn,
+								_user$project$MyStyles$btnBlue,
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Flashcards$Next(model.showDef))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Next Word')
 							]))
 					]))
 			]));

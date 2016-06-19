@@ -51,7 +51,7 @@ init ch =
     chapter = ch
     , wordList = []
     , card = { id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }
-    , showDef = "hidden"
+    , showDef = "visible"
     , time = 0
   }
   in
@@ -63,8 +63,7 @@ init ch =
 -- UPDATE
 
 type Msg
-  = Next
-  | Show
+  = Next String
   | FetchSucceed (List Word)
   | FetchFail Http.Error
   | SetChapter String
@@ -75,20 +74,21 @@ type Msg
 update : Msg -> Model -> (Model, Cmd Msg)
 update action model =
   case action of
-    Next ->
-      (Model model.chapter (cycleCards model.wordList) (getNextWord model) "hidden" model.time, Cmd.none)
-
-    Show ->
-      (Model model.chapter model.wordList model.card "visible" model.time, Cmd.none)
+    Next vis ->
+      case vis of
+      "hidden" ->
+        (Model model.chapter model.wordList model.card "visible" model.time, Cmd.none)
+      _ ->
+        (Model model.chapter (cycleCards model.wordList) (getNextWord model) "hidden" model.time, Cmd.none)
 
     FetchSucceed newList ->
-      (Model model.chapter (shuffle (Model model.chapter newList model.card "hidden" model.time)) model.card "hidden" model.time, Cmd.none)
+      (Model model.chapter (shuffle (Model model.chapter newList model.card "hidden" model.time)) model.card "visible" model.time, Cmd.none)
 
     FetchFail _ ->
       (model, Cmd.none)
 
     SetChapter ch ->
-      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "hidden" model.time, getWordList ch)
+      (Model ch model.wordList ({ id = 0, word = "", definition = "", definiteArticle = "", numOfTimesInNT = 0, otherWordForms = "" }) "visible" model.time, getWordList ch)
 
     Shuffle ->
       (Model model.chapter (shuffle model) model.card model.showDef model.time, Cmd.none)
@@ -110,6 +110,13 @@ view model =
         option [selected True, Html.Attributes.value "Ch4"] [text "Ch 4"]
         , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
         , option [Html.Attributes.value "Ch7"] [text "Ch 7"]
+        , option [Html.Attributes.value "Ch8"] [text "Ch 8"]
+        , option [Html.Attributes.value "Ch9"] [text "Ch 9"]
+        , option [Html.Attributes.value "Ch10"] [text "Ch 10"]
+        , option [Html.Attributes.value "Ch11"] [text "Ch 11"]
+        , option [Html.Attributes.value "Ch12"] [text "Ch 12"]
+        , option [Html.Attributes.value "Ch13"] [text "Ch 13"]
+        , option [Html.Attributes.value "Ch14"] [text "Ch 14"]
       ]
       {--, optgroup [attribute "label" "Cognate Vocab Lists"] [
         option [Html.Attributes.value "Ch4"] [text "agathos"]
@@ -117,7 +124,7 @@ view model =
       ]--}
     ],
     div [flashcard] [
-      h5 [size2, pullRight, style [ ("display", "none") ]] [text (toString model.card.numOfTimesInNT)]
+      h5 [size2, pullRight, style [ ("visibility", "hidden") ]] [text (toString model.card.numOfTimesInNT)]
       , div [clearFloats] []
       , h1 [size3, textCenter] [text model.card.word]
       , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
@@ -125,9 +132,8 @@ view model =
       , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.otherWordForms]
     ]
     , div []
-    [ button [ btn, btnBlue, onClick Show ] [ text "Show Definition" ]
-    , button [ btn, btnBlue, onClick Next ] [ text "Next Word" ]
-    , button [ btn, btnBlue, onClick Shuffle ] [ text "Shuffle" ]
+    [ button [ btn, btnBlue, onClick Shuffle ] [ text "Shuffle" ]
+    , button [ btn, btnBlue, onClick (Next model.showDef) ] [ text "Next Word" ]
     ]
     ]
 
