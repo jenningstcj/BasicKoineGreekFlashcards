@@ -131,6 +131,7 @@ view model =
         , option [Html.Attributes.value "Ch28"] [text "Ch 28"]
         , option [Html.Attributes.value "Ch29"] [text "Ch 29"]
         , option [Html.Attributes.value "Ch30-35"] [text "Ch 30-35"]
+        , option [Html.Attributes.value "Additional"] [text "Additional"]
       ]
       {--, optgroup [attribute "label" "Cognate Vocab Lists"] [
         option [Html.Attributes.value "Ch4"] [text "agathos"]
