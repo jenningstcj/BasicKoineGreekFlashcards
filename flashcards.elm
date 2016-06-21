@@ -123,6 +123,10 @@ view model =
         , option [Html.Attributes.value "Ch19"] [text "Ch 19"]
         , option [Html.Attributes.value "Ch20"] [text "Ch 20"]
         , option [Html.Attributes.value "Ch21"] [text "Ch 21"]
+        , option [Html.Attributes.value "Ch22"] [text "Ch 22"]
+        , option [Html.Attributes.value "Ch23"] [text "Ch 23"]
+        , option [Html.Attributes.value "Ch24"] [text "Ch 24"]
+        , option [Html.Attributes.value "Ch25"] [text "Ch 25"]
       ]
       {--, optgroup [attribute "label" "Cognate Vocab Lists"] [
         option [Html.Attributes.value "Ch4"] [text "agathos"]
