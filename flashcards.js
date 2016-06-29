@@ -8722,21 +8722,66 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html$option,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$value('Nouns')
+										_elm_lang$html$Html_Attributes$value('nounRules'),
+										_elm_lang$html$Html_Attributes$disabled(true)
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html$text('Nouns')
+										_elm_lang$html$Html$text('Noun Rules')
 									])),
 								A2(
 								_elm_lang$html$Html$option,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$value('Verbs')
+										_elm_lang$html$Html_Attributes$value('nounEndings')
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html$text('Verbs')
+										_elm_lang$html$Html$text('Noun Endings')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('definiteArticle'),
+										_elm_lang$html$Html_Attributes$disabled(true)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Definite Article')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('adjectives'),
+										_elm_lang$html$Html_Attributes$disabled(true)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Adjectives')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('verbRules'),
+										_elm_lang$html$Html_Attributes$disabled(true)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Verb Rules')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$value('εἰμί'),
+										_elm_lang$html$Html_Attributes$disabled(true)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('εἰμί')
 									]))
 							])),
 						A2(
