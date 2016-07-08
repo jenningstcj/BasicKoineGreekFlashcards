@@ -103,9 +103,9 @@ view model =
   div [mainStyle, textCenter]
     [ select [ textCenter, selectList, onInput SetChapter] [
       optgroup [attribute "label" "Grammar"] [
-        option [Html.Attributes.value "nounRules", Html.Attributes.disabled True] [text "Noun Rules"]
+        option [Html.Attributes.value "nounRules"] [text "Noun Rules"]
         , option [Html.Attributes.value "nounEndings"] [text "Noun Endings"]
-        , option [Html.Attributes.value "definiteArticle", Html.Attributes.disabled True] [text "Definite Article"]
+        , option [Html.Attributes.value "defArticle"] [text "Definite Article"]
         , option [Html.Attributes.value "adjectives", Html.Attributes.disabled True] [text "Adjectives"]
         , option [Html.Attributes.value "verbRules", Html.Attributes.disabled True] [text "Verb Rules"]
         , option [Html.Attributes.value "εἰμί", Html.Attributes.disabled True] [text "εἰμί"]

@@ -8722,8 +8722,7 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html$option,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$value('nounRules'),
-										_elm_lang$html$Html_Attributes$disabled(true)
+										_elm_lang$html$Html_Attributes$value('nounRules')
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
@@ -8743,8 +8742,7 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html$option,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$value('definiteArticle'),
-										_elm_lang$html$Html_Attributes$disabled(true)
+										_elm_lang$html$Html_Attributes$value('defArticle')
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
