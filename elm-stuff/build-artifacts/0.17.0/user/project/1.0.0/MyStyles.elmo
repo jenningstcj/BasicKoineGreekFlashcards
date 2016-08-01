@@ -35,7 +35,9 @@ var _user$project$MyStyles$selectList = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'border', _1: '1px solid #ccc'},
 			{ctor: '_Tuple2', _0: 'borderRadius', _1: '4px'},
 			{ctor: '_Tuple2', _0: 'boxShadow', _1: 'inset 0 1px 1px rgba(0,0,0,.075)'},
-			{ctor: '_Tuple2', _0: 'transition', _1: 'border-color ease-in-out .15s,box-shadow ease-in-out .15s'}
+			{ctor: '_Tuple2', _0: 'transition', _1: 'border-color ease-in-out .15s,box-shadow ease-in-out .15s'},
+			{ctor: '_Tuple2', _0: 'width', _1: '98%'},
+			{ctor: '_Tuple2', _0: 'height', _1: '8%'}
 		]));
 var _user$project$MyStyles$italics = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
@@ -77,7 +79,14 @@ var _user$project$MyStyles$btn = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'border', _1: 'none'},
 			{ctor: '_Tuple2', _0: 'color', _1: '#ffffff'},
 			{ctor: '_Tuple2', _0: 'margin', _1: '5px'},
-			{ctor: '_Tuple2', _0: 'fontSize', _1: '3em'}
+			{ctor: '_Tuple2', _0: 'fontSize', _1: '3em'},
+			{ctor: '_Tuple2', _0: 'height', _1: '100%'},
+			{ctor: '_Tuple2', _0: 'width', _1: '48%'}
+		]));
+var _user$project$MyStyles$buttonBar = _elm_lang$html$Html_Attributes$style(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'height', _1: '15%'}
 		]));
 var _user$project$MyStyles$center = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(

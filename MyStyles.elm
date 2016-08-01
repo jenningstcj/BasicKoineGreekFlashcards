@@ -25,6 +25,11 @@ center =
     , ("display", "inline-block")
     ]
 
+buttonBar: Attribute msg
+buttonBar =
+  style
+    [("height", "15%")]
+
 btn: Attribute msg
 btn =
   style
@@ -40,6 +45,8 @@ btn =
     , ("color", "#ffffff")
     , ("margin", "5px")
     , ("fontSize", "3em")
+    , ("height", "100%")
+    , ("width", "48%")
     ]
 
 btnBlue: Attribute msg
@@ -81,6 +88,8 @@ selectList =
     , ("borderRadius", "4px")
     , ("boxShadow","inset 0 1px 1px rgba(0,0,0,.075)")
     , ("transition","border-color ease-in-out .15s,box-shadow ease-in-out .15s")
+    , ("width", "98%")
+    , ("height", "8%")
     ]
 
 pullRight: Attribute msg

@@ -245,6 +245,16 @@ var _user$project$Flashcards$view = function (model) {
 								_elm_lang$html$Html$option,
 								_elm_lang$core$Native_List.fromArray(
 									[
+										_elm_lang$html$Html_Attributes$value('pronouns')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Pronouns')
+									])),
+								A2(
+								_elm_lang$html$Html$option,
+								_elm_lang$core$Native_List.fromArray(
+									[
 										_elm_lang$html$Html_Attributes$value('adjectives'),
 										_elm_lang$html$Html_Attributes$disabled(true)
 									]),
@@ -625,7 +635,7 @@ var _user$project$Flashcards$view = function (model) {
 				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[_user$project$MyStyles$buttonBar]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
