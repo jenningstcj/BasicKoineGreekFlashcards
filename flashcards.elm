@@ -110,52 +110,45 @@ view model =
         span [class "mdl-layout-title"] [text "Koine Greek "]
         , div [class "mdl-layout-spacer"] []
         , nav [class "mdl-navigation"] [
-         select [onInput SetChapter] [
-          optgroup [attribute "label" "Grammar"] [
-            option [Html.Attributes.value "nounRules"] [text "Noun Rules"]
-            , option [Html.Attributes.value "nounEndings"] [text "Noun Endings"]
-            , option [Html.Attributes.value "defArticle"] [text "Definite Article"]
-            , option [Html.Attributes.value "pronouns"] [text "Pronouns"]
-            , option [Html.Attributes.value "adjectives", Html.Attributes.disabled True] [text "Adjectives"]
-            , option [Html.Attributes.value "verbRules", Html.Attributes.disabled True] [text "Verb Rules"]
-            , option [Html.Attributes.value "εἰμί", Html.Attributes.disabled True] [text "εἰμί"]
+          select [onInput SetChapter] [
+            optgroup [attribute "label" "Grammar"] [
+              option [Html.Attributes.value "nounRules"] [text "Noun Rules"]
+              , option [Html.Attributes.value "nounEndings"] [text "Noun Endings"]
+              , option [Html.Attributes.value "defArticle"] [text "Definite Article"]
+              , option [Html.Attributes.value "pronouns"] [text "Pronouns"]
+              , option [Html.Attributes.value "adjectives", Html.Attributes.disabled True] [text "Adjectives"]
+              , option [Html.Attributes.value "verbRules", Html.Attributes.disabled True] [text "Verb Rules"]
+              , option [Html.Attributes.value "εἰμί", Html.Attributes.disabled True] [text "εἰμί"]
+            ]
+            , optgroup [attribute "label" "Mounce Chapter Vocab"] [
+              option [selected True, Html.Attributes.value "Ch4"] [text "Ch 4"]
+              , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
+              , option [Html.Attributes.value "Ch7"] [text "Ch 7"]
+              , option [Html.Attributes.value "Ch8"] [text "Ch 8"]
+              , option [Html.Attributes.value "Ch9"] [text "Ch 9"]
+              , option [Html.Attributes.value "Ch10"] [text "Ch 10"]
+              , option [Html.Attributes.value "Ch11"] [text "Ch 11"]
+              , option [Html.Attributes.value "Ch12"] [text "Ch 12"]
+              , option [Html.Attributes.value "Ch13"] [text "Ch 13"]
+              , option [Html.Attributes.value "Ch14"] [text "Ch 14"]
+              , option [Html.Attributes.value "Ch16"] [text "Ch 16"]
+              , option [Html.Attributes.value "Ch17"] [text "Ch 17"]
+              , option [Html.Attributes.value "Ch18"] [text "Ch 18"]
+              , option [Html.Attributes.value "Ch19"] [text "Ch 19"]
+              , option [Html.Attributes.value "Ch20"] [text "Ch 20"]
+              , option [Html.Attributes.value "Ch21"] [text "Ch 21"]
+              , option [Html.Attributes.value "Ch22"] [text "Ch 22"]
+              , option [Html.Attributes.value "Ch23"] [text "Ch 23"]
+              , option [Html.Attributes.value "Ch24"] [text "Ch 24"]
+              , option [Html.Attributes.value "Ch25"] [text "Ch 25"]
+              , option [Html.Attributes.value "Ch27"] [text "Ch 27"]
+              , option [Html.Attributes.value "Ch28"] [text "Ch 28"]
+              , option [Html.Attributes.value "Ch29"] [text "Ch 29"]
+              , option [Html.Attributes.value "Ch30-35"] [text "Ch 30-35"]
+              , option [Html.Attributes.value "Additional"] [text "Additional"]
+            ]
           ]
-          , optgroup [attribute "label" "Mounce Chapter Vocab"] [
-            option [selected True, Html.Attributes.value "Ch4"] [text "Ch 4"]
-            , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
-            , option [Html.Attributes.value "Ch7"] [text "Ch 7"]
-            , option [Html.Attributes.value "Ch8"] [text "Ch 8"]
-            , option [Html.Attributes.value "Ch9"] [text "Ch 9"]
-            , option [Html.Attributes.value "Ch10"] [text "Ch 10"]
-            , option [Html.Attributes.value "Ch11"] [text "Ch 11"]
-            , option [Html.Attributes.value "Ch12"] [text "Ch 12"]
-            , option [Html.Attributes.value "Ch13"] [text "Ch 13"]
-            , option [Html.Attributes.value "Ch14"] [text "Ch 14"]
-            , option [Html.Attributes.value "Ch16"] [text "Ch 16"]
-            , option [Html.Attributes.value "Ch17"] [text "Ch 17"]
-            , option [Html.Attributes.value "Ch18"] [text "Ch 18"]
-            , option [Html.Attributes.value "Ch19"] [text "Ch 19"]
-            , option [Html.Attributes.value "Ch20"] [text "Ch 20"]
-            , option [Html.Attributes.value "Ch21"] [text "Ch 21"]
-            , option [Html.Attributes.value "Ch22"] [text "Ch 22"]
-            , option [Html.Attributes.value "Ch23"] [text "Ch 23"]
-            , option [Html.Attributes.value "Ch24"] [text "Ch 24"]
-            , option [Html.Attributes.value "Ch25"] [text "Ch 25"]
-            , option [Html.Attributes.value "Ch27"] [text "Ch 27"]
-            , option [Html.Attributes.value "Ch28"] [text "Ch 28"]
-            , option [Html.Attributes.value "Ch29"] [text "Ch 29"]
-            , option [Html.Attributes.value "Ch30-35"] [text "Ch 30-35"]
-            , option [Html.Attributes.value "Additional"] [text "Additional"]
-          ]
-          {--, optgroup [attribute "label" "Cognate Vocab Lists"] [
-            option [Html.Attributes.value "Ch4"] [text "agathos"]
-            , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
-          ]--}
         ]
-        ]
-
-
-
       ]
     ]
     , div [class "mdl-layout__drawer"] [
@@ -168,8 +161,6 @@ view model =
       div [class "page-content"] [
 
          div [class "mdl-card mdl-shadow--2dp", flashcard] [
-            {--h5 [size2, pullRight, style [ ("visibility", "hidden") ]] [text (toString model.card.numOfTimesInNT)]
-            , div [clearFloats] []--}
             div [class "mdl-card__title", textCenter] [
              h2 [textCenter] [text model.card.word]
             ]
@@ -180,11 +171,13 @@ view model =
             ]
           ]
           , div [class "mdl-grid"] [
-            div [class "mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone", textCenter] [ button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick Shuffle ] [ text "Shuffle" ]]
-            , div [class "mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone", textCenter] [button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick (Next model.showDef) ] [ text "Next Word" ] ]
+            div [class "mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone", textCenter] [ 
+              button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick Shuffle ] [ text "Shuffle" ]
+            ]
+            , div [class "mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone", textCenter] [
+              button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick (Next model.showDef) ] [ text "Next Word" ]
+            ]
           ]
-
-
       ]
     ]
   ]
