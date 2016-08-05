@@ -9047,6 +9047,11 @@ var _evancz$elm_http$Http$post = F3(
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
 
+var _user$project$MyStyles$allowScroll = _elm_lang$html$Html_Attributes$style(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'overflow-y', _1: 'scroll'}
+		]));
 var _user$project$MyStyles$size3 = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -9841,7 +9846,8 @@ var _user$project$Flashcards$view = function (model) {
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html_Attributes$class('mdl-card__supporting-text'),
-												_user$project$MyStyles$textCenter
+												_user$project$MyStyles$textCenter,
+												_user$project$MyStyles$allowScroll
 											]),
 										_elm_lang$core$Native_List.fromArray(
 											[

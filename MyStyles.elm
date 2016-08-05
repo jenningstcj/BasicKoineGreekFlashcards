@@ -132,3 +132,8 @@ size3:Attribute msg
 size3 =
   style
     [("fontSize","3em")]
+
+allowScroll: Attribute msg
+allowScroll =
+  style
+    [("overflow-y", "scroll")]

@@ -173,7 +173,7 @@ view model =
             div [class "mdl-card__title", textCenter] [
              h2 [textCenter] [text model.card.word]
             ]
-            , div [class "mdl-card__supporting-text", textCenter] [
+            , div [class "mdl-card__supporting-text", textCenter, allowScroll] [
               h3 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
               , h3 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definiteArticle]
               , h3 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.otherWordForms]

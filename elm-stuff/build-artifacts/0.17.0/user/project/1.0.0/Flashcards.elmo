@@ -679,7 +679,8 @@ var _user$project$Flashcards$view = function (model) {
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html_Attributes$class('mdl-card__supporting-text'),
-												_user$project$MyStyles$textCenter
+												_user$project$MyStyles$textCenter,
+												_user$project$MyStyles$allowScroll
 											]),
 										_elm_lang$core$Native_List.fromArray(
 											[
