@@ -9381,8 +9381,7 @@ var _user$project$Flashcards$view = function (model) {
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html$text('Koine Greek '),
-										_elm_lang$html$Html$text(model.chapter)
+										_elm_lang$html$Html$text('Koine Greek ')
 									])),
 								A2(
 								_elm_lang$html$Html$div,
@@ -9831,7 +9830,7 @@ var _user$project$Flashcards$view = function (model) {
 												A2(
 												_elm_lang$html$Html$h1,
 												_elm_lang$core$Native_List.fromArray(
-													[_user$project$MyStyles$size3, _user$project$MyStyles$textCenter]),
+													[_user$project$MyStyles$textCenter]),
 												_elm_lang$core$Native_List.fromArray(
 													[
 														_elm_lang$html$Html$text(model.card.word)
@@ -9850,7 +9849,6 @@ var _user$project$Flashcards$view = function (model) {
 												_elm_lang$html$Html$h2,
 												_elm_lang$core$Native_List.fromArray(
 													[
-														_user$project$MyStyles$size3,
 														_user$project$MyStyles$textCenter,
 														_elm_lang$html$Html_Attributes$style(
 														_elm_lang$core$Native_List.fromArray(
@@ -9866,7 +9864,6 @@ var _user$project$Flashcards$view = function (model) {
 												_elm_lang$html$Html$h2,
 												_elm_lang$core$Native_List.fromArray(
 													[
-														_user$project$MyStyles$size3,
 														_user$project$MyStyles$textCenter,
 														_elm_lang$html$Html_Attributes$style(
 														_elm_lang$core$Native_List.fromArray(
@@ -9882,7 +9879,6 @@ var _user$project$Flashcards$view = function (model) {
 												_elm_lang$html$Html$h2,
 												_elm_lang$core$Native_List.fromArray(
 													[
-														_user$project$MyStyles$size3,
 														_user$project$MyStyles$textCenter,
 														_elm_lang$html$Html_Attributes$style(
 														_elm_lang$core$Native_List.fromArray(
