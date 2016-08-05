@@ -10,8 +10,8 @@ flashcard =
   style
     [  ("marginLeft", "auto")
     , ("marginRight", "auto")
-    , ("width", "97%")
-    , ("height", "85%")
+    , ("width", "95%")
+    , ("height", "80%")
     ]
 
   {-- style
