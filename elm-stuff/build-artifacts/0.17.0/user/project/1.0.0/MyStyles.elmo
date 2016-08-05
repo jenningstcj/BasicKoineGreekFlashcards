@@ -105,3 +105,8 @@ var _user$project$MyStyles$flashcard = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'width', _1: '95%'},
 			{ctor: '_Tuple2', _0: 'height', _1: '80%'}
 		]));
+var _user$project$MyStyles$backdrop = _elm_lang$html$Html_Attributes$style(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'backgroundColor', _1: '#fafafa'}
+		]));

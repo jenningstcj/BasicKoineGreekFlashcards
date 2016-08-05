@@ -5,6 +5,10 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 
+backdrop : Attribute msg
+backdrop =
+  style [("backgroundColor", "#fafafa")]
+
 flashcard : Attribute msg
 flashcard =
   style

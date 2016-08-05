@@ -162,7 +162,7 @@ view model =
         a [class "mdl-navigation__link", href ""] [text "tesdf"]
       ]
     ]
-    , main' [class "mdl-layout__content"] [
+    , main' [class "mdl-layout__content", backdrop] [
       div [class "page-content"] [
 
          div [class "mdl-card mdl-shadow--2dp", flashcard] [

@@ -9154,6 +9154,11 @@ var _user$project$MyStyles$flashcard = _elm_lang$html$Html_Attributes$style(
 			{ctor: '_Tuple2', _0: 'width', _1: '95%'},
 			{ctor: '_Tuple2', _0: 'height', _1: '80%'}
 		]));
+var _user$project$MyStyles$backdrop = _elm_lang$html$Html_Attributes$style(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'backgroundColor', _1: '#fafafa'}
+		]));
 
 var _user$project$Flashcards$shuffle = function (model) {
 	var randomlist = _elm_lang$core$Basics$fst(
@@ -9792,7 +9797,8 @@ var _user$project$Flashcards$view = function (model) {
 				_elm_lang$html$Html$main$,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$class('mdl-layout__content')
+						_elm_lang$html$Html_Attributes$class('mdl-layout__content'),
+						_user$project$MyStyles$backdrop
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[

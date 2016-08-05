@@ -635,7 +635,8 @@ var _user$project$Flashcards$view = function (model) {
 				_elm_lang$html$Html$main$,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$class('mdl-layout__content')
+						_elm_lang$html$Html_Attributes$class('mdl-layout__content'),
+						_user$project$MyStyles$backdrop
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
