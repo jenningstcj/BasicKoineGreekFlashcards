@@ -9828,7 +9828,7 @@ var _user$project$Flashcards$view = function (model) {
 										_elm_lang$core$Native_List.fromArray(
 											[
 												A2(
-												_elm_lang$html$Html$h1,
+												_elm_lang$html$Html$h2,
 												_elm_lang$core$Native_List.fromArray(
 													[_user$project$MyStyles$textCenter]),
 												_elm_lang$core$Native_List.fromArray(
@@ -9846,7 +9846,7 @@ var _user$project$Flashcards$view = function (model) {
 										_elm_lang$core$Native_List.fromArray(
 											[
 												A2(
-												_elm_lang$html$Html$h2,
+												_elm_lang$html$Html$h3,
 												_elm_lang$core$Native_List.fromArray(
 													[
 														_user$project$MyStyles$textCenter,
@@ -9861,7 +9861,7 @@ var _user$project$Flashcards$view = function (model) {
 														_elm_lang$html$Html$text(model.card.definition)
 													])),
 												A2(
-												_elm_lang$html$Html$h2,
+												_elm_lang$html$Html$h3,
 												_elm_lang$core$Native_List.fromArray(
 													[
 														_user$project$MyStyles$textCenter,
@@ -9876,7 +9876,7 @@ var _user$project$Flashcards$view = function (model) {
 														_elm_lang$html$Html$text(model.card.definiteArticle)
 													])),
 												A2(
-												_elm_lang$html$Html$h2,
+												_elm_lang$html$Html$h3,
 												_elm_lang$core$Native_List.fromArray(
 													[
 														_user$project$MyStyles$textCenter,

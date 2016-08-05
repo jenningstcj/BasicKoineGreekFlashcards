@@ -171,12 +171,12 @@ view model =
             {--h5 [size2, pullRight, style [ ("visibility", "hidden") ]] [text (toString model.card.numOfTimesInNT)]
             , div [clearFloats] []--}
             div [class "mdl-card__title", textCenter] [
-             h1 [textCenter] [text model.card.word]
+             h2 [textCenter] [text model.card.word]
             ]
             , div [class "mdl-card__supporting-text", textCenter] [
-              h2 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
-              , h2 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definiteArticle]
-              , h2 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.otherWordForms]
+              h3 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
+              , h3 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definiteArticle]
+              , h3 [textCenter, style [ ("visibility", model.showDef) ]] [text model.card.otherWordForms]
             ]
           ]
           , div [class "mdl-grid"] [
