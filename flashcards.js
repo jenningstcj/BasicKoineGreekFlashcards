@@ -8425,7 +8425,9 @@ var _user$project$MyStyles$dropDown = _elm_lang$html$Html_Attributes$style(
 var _user$project$MyStyles$textCenter = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
-			{ctor: '_Tuple2', _0: 'textAlign', _1: 'center'}
+			{ctor: '_Tuple2', _0: 'textAlign', _1: 'center'},
+			{ctor: '_Tuple2', _0: 'marginLeft', _1: 'auto'},
+			{ctor: '_Tuple2', _0: 'marginRight', _1: 'auto'}
 		]));
 var _user$project$MyStyles$pullRight = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
@@ -8506,12 +8508,10 @@ var _user$project$MyStyles$center = _elm_lang$html$Html_Attributes$style(
 var _user$project$MyStyles$flashcard = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
-			{ctor: '_Tuple2', _0: 'backgroundColor', _1: '#fafafa'},
-			{ctor: '_Tuple2', _0: 'height', _1: '75%'},
-			{ctor: '_Tuple2', _0: 'boxShadow', _1: '0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)'},
-			{ctor: '_Tuple2', _0: 'margin', _1: '8px'},
-			{ctor: '_Tuple2', _0: 'position', _1: 'relative'},
-			{ctor: '_Tuple2', _0: 'borderRadius', _1: '2px'}
+			{ctor: '_Tuple2', _0: 'marginLeft', _1: 'auto'},
+			{ctor: '_Tuple2', _0: 'marginRight', _1: 'auto'},
+			{ctor: '_Tuple2', _0: 'width', _1: '97%'},
+			{ctor: '_Tuple2', _0: 'height', _1: '85%'}
 		]));
 
 var _user$project$Flashcards$shuffle = function (model) {
@@ -9063,121 +9063,145 @@ var _user$project$Flashcards$view = function (model) {
 							]))
 					])),
 				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
-					[_user$project$MyStyles$flashcard]),
+					[
+						_elm_lang$html$Html_Attributes$class('mdl-card mdl-shadow--2dp'),
+						_user$project$MyStyles$flashcard
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$h5,
+						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_user$project$MyStyles$size2,
-								_user$project$MyStyles$pullRight,
-								_elm_lang$html$Html_Attributes$style(
-								_elm_lang$core$Native_List.fromArray(
-									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: 'hidden'}
-									]))
+								_elm_lang$html$Html_Attributes$class('mdl-card__title'),
+								_user$project$MyStyles$textCenter
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(model.card.numOfTimesInNT))
+								A2(
+								_elm_lang$html$Html$h1,
+								_elm_lang$core$Native_List.fromArray(
+									[_user$project$MyStyles$size3, _user$project$MyStyles$textCenter]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(model.card.word)
+									]))
 							])),
 						A2(
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
-							[_user$project$MyStyles$clearFloats]),
-						_elm_lang$core$Native_List.fromArray(
-							[])),
-						A2(
-						_elm_lang$html$Html$h1,
-						_elm_lang$core$Native_List.fromArray(
-							[_user$project$MyStyles$size3, _user$project$MyStyles$textCenter]),
-						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text(model.card.word)
-							])),
-						A2(
-						_elm_lang$html$Html$h2,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_user$project$MyStyles$size3,
-								_user$project$MyStyles$textCenter,
-								_elm_lang$html$Html_Attributes$style(
-								_elm_lang$core$Native_List.fromArray(
-									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
-									]))
+								_elm_lang$html$Html_Attributes$class('mdl-card__supporting-text'),
+								_user$project$MyStyles$textCenter
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text(model.card.definition)
-							])),
-						A2(
-						_elm_lang$html$Html$h2,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_user$project$MyStyles$size3,
-								_user$project$MyStyles$textCenter,
-								_elm_lang$html$Html_Attributes$style(
+								A2(
+								_elm_lang$html$Html$h2,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
-									]))
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text(model.card.definiteArticle)
-							])),
-						A2(
-						_elm_lang$html$Html$h2,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_user$project$MyStyles$size3,
-								_user$project$MyStyles$textCenter,
-								_elm_lang$html$Html_Attributes$style(
+										_user$project$MyStyles$size3,
+										_user$project$MyStyles$textCenter,
+										_elm_lang$html$Html_Attributes$style(
+										_elm_lang$core$Native_List.fromArray(
+											[
+												{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+											]))
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+										_elm_lang$html$Html$text(model.card.definition)
+									])),
+								A2(
+								_elm_lang$html$Html$h2,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$MyStyles$size3,
+										_user$project$MyStyles$textCenter,
+										_elm_lang$html$Html_Attributes$style(
+										_elm_lang$core$Native_List.fromArray(
+											[
+												{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+											]))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(model.card.definiteArticle)
+									])),
+								A2(
+								_elm_lang$html$Html$h2,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$MyStyles$size3,
+										_user$project$MyStyles$textCenter,
+										_elm_lang$html$Html_Attributes$style(
+										_elm_lang$core$Native_List.fromArray(
+											[
+												{ctor: '_Tuple2', _0: 'visibility', _1: model.showDef}
+											]))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(model.card.otherWordForms)
 									]))
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text(model.card.otherWordForms)
 							]))
 					])),
 				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
-					[_user$project$MyStyles$buttonBar]),
+					[
+						_elm_lang$html$Html_Attributes$class('mdl-grid')
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$button,
+						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_user$project$MyStyles$btn,
-								_user$project$MyStyles$btnBlue,
-								_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Shuffle)
+								_elm_lang$html$Html_Attributes$class('mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Shuffle')
+								A2(
+								_elm_lang$html$Html$button,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('mdl-button mdl-js-button mdl-button--raised mdl-button--colored'),
+										_elm_lang$html$Html_Events$onClick(_user$project$Flashcards$Shuffle)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Shuffle')
+									]))
 							])),
 						A2(
-						_elm_lang$html$Html$button,
+						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_user$project$MyStyles$btn,
-								_user$project$MyStyles$btnBlue,
-								_elm_lang$html$Html_Events$onClick(
-								_user$project$Flashcards$Next(model.showDef))
+								_elm_lang$html$Html_Attributes$class('mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Next Word')
+								A2(
+								_elm_lang$html$Html$button,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('mdl-button mdl-js-button mdl-button--raised mdl-button--colored'),
+										_elm_lang$html$Html_Events$onClick(
+										_user$project$Flashcards$Next(model.showDef))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Next Word')
+									]))
 							]))
 					]))
 			]));

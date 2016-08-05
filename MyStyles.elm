@@ -8,6 +8,13 @@ import Html.Events exposing (..)
 flashcard : Attribute msg
 flashcard =
   style
+    [  ("marginLeft", "auto")
+    , ("marginRight", "auto")
+    , ("width", "97%")
+    , ("height", "85%")
+    ]
+
+  {-- style
     [ ("backgroundColor", "#fafafa")
     , ("height", "75%")
     , ("boxShadow","0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)")
@@ -15,7 +22,7 @@ flashcard =
     , ("position", "relative")
     , ("borderRadius", "2px")
     ]
-
+--}
 
 center: Attribute msg
 center =
@@ -100,7 +107,11 @@ pullRight =
 textCenter: Attribute msg
 textCenter =
   style
-    [("textAlign", "center")]
+    [
+    ("textAlign", "center")
+    , ("marginLeft","auto")
+    , ("marginRight", "auto")
+    ]
 
 dropDown:Attribute msg
 dropDown =

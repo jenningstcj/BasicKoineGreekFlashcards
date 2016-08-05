@@ -17,7 +17,9 @@ var _user$project$MyStyles$dropDown = _elm_lang$html$Html_Attributes$style(
 var _user$project$MyStyles$textCenter = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
-			{ctor: '_Tuple2', _0: 'textAlign', _1: 'center'}
+			{ctor: '_Tuple2', _0: 'textAlign', _1: 'center'},
+			{ctor: '_Tuple2', _0: 'marginLeft', _1: 'auto'},
+			{ctor: '_Tuple2', _0: 'marginRight', _1: 'auto'}
 		]));
 var _user$project$MyStyles$pullRight = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
@@ -98,10 +100,8 @@ var _user$project$MyStyles$center = _elm_lang$html$Html_Attributes$style(
 var _user$project$MyStyles$flashcard = _elm_lang$html$Html_Attributes$style(
 	_elm_lang$core$Native_List.fromArray(
 		[
-			{ctor: '_Tuple2', _0: 'backgroundColor', _1: '#fafafa'},
-			{ctor: '_Tuple2', _0: 'height', _1: '75%'},
-			{ctor: '_Tuple2', _0: 'boxShadow', _1: '0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)'},
-			{ctor: '_Tuple2', _0: 'margin', _1: '8px'},
-			{ctor: '_Tuple2', _0: 'position', _1: 'relative'},
-			{ctor: '_Tuple2', _0: 'borderRadius', _1: '2px'}
+			{ctor: '_Tuple2', _0: 'marginLeft', _1: 'auto'},
+			{ctor: '_Tuple2', _0: 'marginRight', _1: 'auto'},
+			{ctor: '_Tuple2', _0: 'width', _1: '97%'},
+			{ctor: '_Tuple2', _0: 'height', _1: '85%'}
 		]));

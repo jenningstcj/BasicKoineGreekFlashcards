@@ -143,18 +143,28 @@ view model =
         , option [Html.Attributes.value "Ch6"] [text "Ch 6"]
       ]--}
     ],
-    div [flashcard] [
-      h5 [size2, pullRight, style [ ("visibility", "hidden") ]] [text (toString model.card.numOfTimesInNT)]
-      , div [clearFloats] []
-      , h1 [size3, textCenter] [text model.card.word]
-      , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
+    br [] [],
+    div [class "mdl-card mdl-shadow--2dp", flashcard] [
+      {--h5 [size2, pullRight, style [ ("visibility", "hidden") ]] [text (toString model.card.numOfTimesInNT)]
+      , div [clearFloats] []--}
+      div [class "mdl-card__title", textCenter] [
+       h1 [size3, textCenter] [text model.card.word]
+      ]
+      , div [class "mdl-card__supporting-text", textCenter] [
+       h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definition]
       , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.definiteArticle]
       , h2 [size3, textCenter, style [ ("visibility", model.showDef) ]] [text model.card.otherWordForms]
+      ]
+    ],
+    div [class "mdl-grid"] [
+      div [class "mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone"] [ button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick Shuffle ] [ text "Shuffle" ]]
+      , div [class "mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone"] [button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick (Next model.showDef) ] [ text "Next Word" ] ]
     ]
+    {--br [] []
     , div [buttonBar]
-    [ button [ btn, btnBlue, onClick Shuffle ] [ text "Shuffle" ]
-    , button [ btn, btnBlue, onClick (Next model.showDef) ] [ text "Next Word" ]
-    ]
+    [ button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick Shuffle ] [ text "Shuffle" ]
+    , button [ class "mdl-button mdl-js-button mdl-button--raised mdl-button--colored", onClick (Next model.showDef) ] [ text "Next Word" ]
+    ]--}
     ]
 
 
