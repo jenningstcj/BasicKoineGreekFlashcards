@@ -136,4 +136,9 @@ size3 =
 allowScroll: Attribute msg
 allowScroll =
   style
-    [("overflow-y", "scroll")]
+    [("overflow-y", "auto")]
+
+fullHeight: Attribute msg
+fullHeight =
+  style
+    [("height", "100%")]
